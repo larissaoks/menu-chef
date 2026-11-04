@@ -1,75 +1,30 @@
-# React + TypeScript + Vite
+# Menu do Chef
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Painel para organizar o cardápio de pequenos restaurantes, marmiteiros e chefs autônomos. A interface permite consultar receitas por categoria e dificuldade, pesquisar ingredientes e gerenciar disponibilidade, preparo e porções.
 
-Currently, two official plugins are available:
+## Executar localmente
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+Para validar a aplicação:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+```bash
+npm run lint
+npm run build
 ```
+
+## Acesso
+
+O login valida as credenciais pela API [DummyJSON Users](https://dummyjson.com/docs/users#users-login). Para teste, use o usuário `emilys` e a senha `emilyspass`. A sessão (incluindo os tokens retornados pela API) fica salva no `localStorage` deste navegador.
+
+## Funcionalidades
+
+- Listagem e detalhes de receitas da [DummyJSON Recipes](https://dummyjson.com/docs/recipes).
+- Filtros por categoria, dificuldade e busca por nome/ingredientes.
+- Cadastro, edição de tempo e porções, disponibilidade e exclusão de pratos.
+- Rotas do painel protegidas por autenticação.
+- React Query para consultas e mutações; Context API para sessão e alterações locais.
+- As alterações do CRUD também são armazenadas no `localStorage`, porque a DummyJSON retorna respostas simuladas para POST, PUT/PATCH e DELETE e não persiste mudanças no servidor.
